@@ -15,6 +15,13 @@
   "author": "Heather Mosley",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.3"
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.3.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15"
   }
 }
