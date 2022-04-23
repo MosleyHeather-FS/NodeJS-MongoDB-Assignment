@@ -1,0 +1,20 @@
+{
+  "name": "nodejs_mongodb_assignment",
+  "version": "1.0.0",
+  "description": "NodeJS MongoDB Assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon server"
+  },
+  "keywords": [
+    "NodeJS",
+    "Restful",
+    "API"
+  ],
+  "author": "Heather Mosley",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
