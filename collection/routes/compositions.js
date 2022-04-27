@@ -51,7 +51,7 @@ router.get("/:id", (req, res, next) => {
         composer: req.body.composer
     };
 
-    Composition.updateOne({
+    Composition.findOne({
         _id: id
     }, {
         $set: getComposition
@@ -121,7 +121,7 @@ router.delete("/:id", (req, res, next) => {
         composer: req.body.composer
     };
 
-    Composition.updateOne({
+    Composition.deleteOne({
         _id: id
     }, {
         $set: deletedComposition
