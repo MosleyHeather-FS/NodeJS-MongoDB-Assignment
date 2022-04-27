@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 
 const compositionSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    composer: {
-      id: mongoose.Schema.Types.ObjectId,
-      ref: "Composer",
+    title: {
+      type: String,
       required: true,
     },
-    composition: {
+    composer: {
       type: String,
       required: true,
     },
