@@ -12,13 +12,13 @@ router.get("/", (req, res, next) => {
     .select("name")
     .populate("title composer")
     .exec()
-    .then((result) => {
-      console.log(result);
-      if (result.length > 0) {
-        return res.status(406).json({
-          message: messages.composer_already_cataloged,
-        });
-      }
+    .then((composer) => {
+        if (!composer) {
+          console.log(composer);
+          return res.status(404).json({
+            message: messages.composer_not_found,
+          });
+        }
       res.json({
         title: req.body.title,
         composer: req.body.composer,
@@ -80,7 +80,7 @@ router.get("/:composerId", (req, res, next) => {
   const composerId = req.params.composerId;
   Composer.findById(composerId)
     .select("name _id")
-    .populate("composer", "title composer")
+    .populate("title composer")
     .exec()
     .then((composer) => {
       if (!composer) {
