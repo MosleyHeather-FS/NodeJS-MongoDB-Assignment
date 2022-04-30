@@ -6,6 +6,8 @@ const Composition = require("../models/composition");
 router.get("/", (req, res, next) => {
   res.json({
     message: "Compositions - GET",
+    title: req.body.title,
+    composer: req.body.composer,
   });
 });
 
@@ -69,19 +71,11 @@ router.post("/", (req, res, next) => {
 router.get("/:id", (req, res, next) => {
   const id = req.params.id;
 
-  const getComposition = {
+  Composition.findOne({
+    _id: id,
     title: req.body.title,
     composer: req.body.composer,
-  };
-
-  Composition.findOne(
-    {
-      _id: id,
-    },
-    {
-      $set: getComposition,
-    }
-  )
+  })
     .then((result) => {
       res.status(200).json({
         message: "Received Composition",
@@ -152,14 +146,9 @@ router.delete("/:id", (req, res, next) => {
     composer: req.body.composer,
   };
 
-  Composition.deleteOne(
-    {
-      _id: id,
-    },
-    {
-      $set: deletedComposition,
-    }
-  )
+  Composition.deleteOne({
+    _id: id,
+  })
     .then((result) => {
       res.status(200).json({
         message: "Composition Deleted",
