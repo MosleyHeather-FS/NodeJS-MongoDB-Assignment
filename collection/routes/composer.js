@@ -31,7 +31,7 @@ router.post("/", (req, res, next) => {
     title: req.body.title,
     composer: req.body.composer,
   })
-    .select("name")
+    .select("name _id")
     .exec()
     .then((result) => {
       console.log(result);
@@ -40,6 +40,7 @@ router.post("/", (req, res, next) => {
           message: messages.composer_already_cataloged,
         });
       }
+    })
 
       const newComposer = new Composer({
         _id: mongoose.Types.ObjectId(),
@@ -74,13 +75,12 @@ router.post("/", (req, res, next) => {
           });
         });
     });
-});
 
 router.get("/:composerId", (req, res, next) => {
   const composerId = req.params.composerId;
-  Composer.findById(composerId)
+  Composer.findById({_id:composerId})
     .select("name _id")
-    .populate("title composer")
+    .populate("composition", "title composer")
     .exec()
     .then((composer) => {
       if (!composer) {
@@ -156,13 +156,12 @@ router.patch("/:composerId", (req, res, next) => {
 
 router.delete("/:composerId", (req, res, next) => {
   const composerId = req.params.composerId;
-  //Composer.findById(composerId);
   Composer.deleteOne({
     _id: composerId,
   })
     .select("name _id")
-    .exec();
-  Composer.findById(composerId)
+    .exec()
+  //Composer.findById(composerId)
     .then((composer) => {
       if (!composer) {
         console.log(composer);

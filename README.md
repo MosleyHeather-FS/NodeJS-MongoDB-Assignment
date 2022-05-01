@@ -15,3 +15,7 @@
 ## April 30, 2022
 #### Fixed POST, DELETE, and GET BY ID, not giving the error messages if you try looking for someone in the cataloge that doesn't exist or if you try to post someone that does.
 #### Fixed populate to where it shows both title and composer together, but it still doesn't connect to the other collection.
+
+## May 1, 2022
+#### Removed the code to create a post from the code to check if a post existed. 
+#### Put the code for ref tag back in model, but continue to experience errors when trying to post.
